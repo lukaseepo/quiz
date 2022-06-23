@@ -12,7 +12,7 @@ import { QuizModule } from './quiz/quiz.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    QuizModule
+    QuizModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

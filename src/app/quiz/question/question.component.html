@@ -1,0 +1,27 @@
+<style>
+    .hellos {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .hello {
+        padding: 50px;
+        margin: 50px;
+        background-color: red;
+    }
+</style>
+
+<div class="hellos">
+    <div class="hello">
+        <h3>{{list.results[currentQuiz].question}}</h3>
+        <ul *ngFor='let item of list.results[currentQuiz].incorrect_answers;  let i=index'>
+            <li>
+                <input [disabled]='answerSelected' type="radio" name='options' (change)='onAnswer(item[4])'> {{item}}
+            </li>
+        </ul>
+    </div>
+</div>
+
+<p>{{currentQuiz + 1}} of {{list.results.length}}</p>
+
+<p>Correct answers: {{correctAnswers}} Inccorect answers: {{incorrectAnswers}}</p>
