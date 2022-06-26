@@ -7,50 +7,56 @@ import { QuizService } from '../quiz.service';
   styleUrls: ['./question.component.scss']
 })
 export class QuestionComponent implements OnInit {
+  list: any[] = [];
+  i: number = 0;
+  correctAnswer: number = 0;
+  showSubmit: boolean = false;
+  showNext: boolean = true;
 
-  correct:boolean = false; 
-  answer:any = '';
-  list:any = [];
-  answerSelected:boolean = false;
-  correctAnswers:number = 0;
-  incorrectAnswers:number = 0;
   constructor(private http: QuizService) { }
-
-  currentQuiz = 0;
-
-
-
+  
   ngOnInit(): void {
     this.getQuestions();
+    this.isDisabled();
+    this.uncheck();
   }
 
-  getQuestions(){
-    this.http.getQuestions().subscribe((item:any)=>{
-      for(let i = 0; i<item.results.length; i++){
-        item.results[i].incorrect_answers.push(item.results[i].correct_answer);
-      }
-        this.list = item;
-        console.log(item)
-    })
-  }
+  isDisabled(){
 
-  onAnswer(options:any){
-    this.answerSelected = true;
-    setTimeout(() =>{
-      this.currentQuiz++;
-      this.answerSelected = false;
-    },1000)
-    if(options){
-      this.correctAnswers++;
-    }else if(!options){
-      this.incorrectAnswers++;
+    if(this.i === 9){
+      this.showNext = false;
+      this.showSubmit = true;
     }
   }
 
-  
+  getQuestions(): void{
+    this.http.getQuestions().subscribe((item: any) => {
+      this.list = item.results;
+      console.log(this.list)
+      this.nextQues();
+      this.i--;
+    })
+  }
 
+  nextQues(): void{
+    this.list[this.i].incorrect_answers[Math.floor(Math.random() * 3)] = this.list[this.i].correct_answer;
+    this.uncheck();
+    this.i++;
+    this.list[this.i].incorrect_answers[Math.floor(Math.random() * 3)] = this.list[this.i].correct_answer;
+    this.isDisabled();
+  }
 
-  
+  uncheck(): void{
+    let checks:any = document.getElementsByClassName('answer');
 
+    if(this.list[this.i].correct_answer === document.querySelector<any>('input[name="answer"]:checked').value){
+      this.correctAnswer++;
+    }  
 
+   
+
+    for(let i = 0; i < checks.length; i++){
+      checks[i].checked = false;
+    }
+  }
 }
