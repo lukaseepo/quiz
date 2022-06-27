@@ -1,6 +1,12 @@
 .quiz{
     max-width: 500px;
     margin: auto;
+    padding: 4%;
+    background-color: #ffffff;
+    border: 1px solid black;
+    box-shadow: 1px 1px 5px 10px rgba(0,0,0,0.75);
+    transform: translateY(150px);
+    overflow: hidden;
     input{
         margin-top: 10px;
     }
@@ -72,3 +78,130 @@
       }
 }
 
+.s{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  button{
+    margin-left: 20px;
+  }
+}
+
+.options{
+  max-width: 800px;
+  margin: auto;
+  padding: 5%;
+  transform: translateY(150px);
+  .form-options{
+    display: flex;
+    flex-direction: column;
+    .form-control{
+      padding: 10px 15px;
+      font-size: 15px;
+      color: #464545;
+      background-color: #ffffff;
+      border: 1px solid #f1f1f1;
+    }
+    label{
+      color: #ffffff;
+      padding-top: 10px;
+      padding-bottom: 5px;
+      font-size: 15px;
+    }
+    .buttonfx{
+      color: black; /* button text color */
+      outline: none;
+      background: transparent;
+      border: none;
+      border-bottom: 4px solid #eee;
+      letter-spacing: 0.0625em;
+      padding: 8px 10px; 
+      text-transform: uppercase;
+      font: bold 16px 'Bitter', sans-serif; /* use google font */
+      line-height: 2;
+      position: relative;
+      display: inline-block;
+      margin-top: 20px;
+      cursor: pointer;
+        text-decoration: none; /* remove underline if using A instead of BUTTON tag */
+      overflow: hidden;
+      transition: all .5s;
+    }
+    .buttonfx:before,
+    .buttonfx:after{
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+      background: #259f6c; /* onhover background color */
+      z-index: -1;
+      transform: translate3D(0,-100%,0); /* move elements above button so they don't appear initially */
+      transition: all .5s;
+    }
+    
+    .buttonfx:before{
+      background: #fafcd6; /* button default background color */
+      z-index: -2;
+      transform: translate3D(0,0,0);
+    }
+    
+    .buttonfx:hover{
+        color: white;
+    }
+    
+    .buttonfx:hover:after{
+      transform: translate3D(0,0,0);
+      transition: all .5s;
+    }
+
+    .slidebottomleft:after{
+      transform: translate3D(-100%,100%,0);
+    }
+    
+    .slidebottomleft:hover:after{
+        transform: translate3D(0,0,0);
+      transition: all .5s;
+    }
+  }
+}
+
+
+.loading{
+  text-transform:uppercase;
+  font-family: 'Cabin Condensed', sans-serif;
+ font-weight:bold;
+ font-size:100pt;
+ text-align:center;
+ height:120px;
+ line-height:110px;
+ position:absolute;
+ left:0;
+ right:0;
+ top:100px;
+ bottom:0;
+ display:block;
+}
+
+.wave{
+  background-image:url('http://i66.tinypic.com/optxd3.png');
+ color:rgba(0,0,0,0);
+text-shadow:0px 0px rgba(255,255,255,0.06);
+ animation:wave-animation 1s infinite linear, loading-animation 10s infinite linear alternate;
+ background-size:200px 100px;
+ background-clip: text;
+ background-repeat:repeat-x;
+ opacity:1;
+}
+
+@keyframes wave-animation{
+  0%{background-position:0 bottom};
+  100%{background-position:200px bottom};
+}
+
+@keyframes loading-animation{
+  0%{background-size:200px 0px};
+  100%{background-size:200px 200px};
+}

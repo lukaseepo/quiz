@@ -7,10 +7,8 @@ import { Injectable } from '@angular/core'
 
 export class QuizService{
     constructor(private http: HttpClient){}
-    
-    url:string = `https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple`
 
-    getQuestions(){
-        return this.http.get(this.url);
+    getQuestions(amount:string, category: string, difficulty:string){
+        return this.http.get(`https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=multiple`);
     }
 }
