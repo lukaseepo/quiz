@@ -18,9 +18,9 @@ export class QuestionComponent implements OnInit {
   showAnswer: boolean = false;
   showOptions: boolean = true;
   showLoading: boolean = false;
-  amount: any | undefined;
-  category: string  = '9';
-  difficulty: string = 'easy';
+  amount: string  = '10';
+  category: string  = '';
+  difficulty: string = '';
 
   constructor(private http: QuizService) {}
 
@@ -78,8 +78,9 @@ export class QuestionComponent implements OnInit {
   startNewQuiz() {
     this.showAnswer = false;
     this.showOptions = true;
-    this.category  = '9';
-    this.difficulty = 'easy';
+    this.category  = '';
+    this.difficulty = '';
+    this.amount = '10';
     this.correctAnswer = 0;
     this.showSubmit = false;
     this.showNext = true;
@@ -87,16 +88,17 @@ export class QuestionComponent implements OnInit {
 
   startQuiz() {
     this.showOptions = false;
-    this.showLoading = true;
     this.http.getQuestions(this.amount, this.category, this.difficulty).subscribe((item: any) => {
       this.list = item.results;
-      this.showLoading = false;
-      this.showQuiz = true;
-      this.c = 1;
-      this.i = 0;
-      this.list[this.i].incorrect_answers[Math.floor(Math.random() * 3)] = this.list[this.i].correct_answer;
-      this.isDisabled();
-      console.log(this.list);
+      if(this.list.length){
+        this.showQuiz = true;
+        this.c = 1;
+        this.i = 0;
+        this.list[this.i].incorrect_answers[Math.floor(Math.random() * 3)] = this.list[this.i].correct_answer;
+        this.isDisabled(); 
+      }else{
+        this.showLoading = true;
+      }
     })
   }
 }

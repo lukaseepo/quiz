@@ -1,14 +1,14 @@
 <div *ngIf='showOptions' class="options">
   <form class="form-options">
     <label for="trivia_amount">Number of Questions:</label>
-    <input [(ngModel)]="amount" class="form-control" type="number" name="trivia_amount" min="1" max="50" value="10" />
+    <input [(ngModel)]="amount" class="form-control" type="number" name="trivia_amount" min="1" max="50"/>
     <label for="trivia_category">Select Category: </label>
     <select [(ngModel)]="category" class="form-control" name="trivia_category">
+      <option value="">Any Category</option>
       <option value="9">General Knowledge</option>
       <option value="10">Entertainment: Books</option>
       <option value="11">Entertainment: Film</option>
       <option value="12">Entertainment: Music</option>
-      <option value="13">Entertainment: Musicals &amp; Theatres</option>
       <option value="14">Entertainment: Television</option>
       <option value="15">Entertainment: Video Games</option>
       <option value="16">Entertainment: Board Games</option>
@@ -31,6 +31,7 @@
     </select>
     <label for="trivia_difficulty">Select Difficulty: </label>
     <select [(ngModel)]="difficulty"  class="form-control" name="trivia_difficulty">
+        <option value="">Any Difficulty</option>
         <option value="easy">Easy</option>
         <option value="medium">Medium</option>
         <option value="hard">Hard</option>
@@ -92,6 +93,6 @@
 </div>
 
 <div class="loading wave" *ngIf="showLoading">
-  Loading
+  ERROR
 </div>
 
