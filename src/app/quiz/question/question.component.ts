@@ -88,6 +88,9 @@ export class QuestionComponent implements OnInit {
 
   startQuiz() {
     this.showOptions = false;
+    if(this.amount > '50'){
+      this.amount = '50';
+    }
     this.http.getQuestions(this.amount, this.category, this.difficulty).subscribe((item: any) => {
       this.list = item.results;
       if(this.list.length){

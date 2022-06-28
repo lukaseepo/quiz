@@ -4,12 +4,12 @@ import { QuestionComponent } from './question/question.component';
 
 
 const routes: Routes = [{
-    path: '',
+    path: 'quiz',
     component: QuestionComponent
 }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class QuizRoutingModule { }
